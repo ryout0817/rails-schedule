@@ -45,10 +45,9 @@
         <% end %>
       </tbody>
     </table>
-
-  <%=link_to("users/new")do %>
-    <button class="btn-new">ユーザー新規登録</button>
-  <% end%>
+  <!--スケジュール新規登録押下時エラーが出るという指摘を受けたため、buttonの表現を変更しました。 -->
+  <%= button_to "スケジュール新規登録", {action: "new"}, {method: :get, class:"btn-new"}%>
+  <!--この上の部分のみ変更-->
 </body>
 
 <footer>
