@@ -1,0 +1,73 @@
+<header>
+  <h1>Ruby on Rails スケジュール管理アプリ</h1>
+</header>
+
+
+<body>
+  <h2>スケジュール一覧</h2>
+  <% if flash.now[:notice]%>
+    <p class="notice"><%= flash.now[:notice]%></p>
+  <% end %>
+  <table border="1" >
+    <thead>
+      <tr>
+        <th width="70">ID</th>
+        <th width="100">タイトル</th>
+        <th width="150">開始日</th>
+        <th width="150">終了日</th>
+        <th width="70">終日</th>
+        <th width="250">スケジュール更新日</th>
+        <th width="70">確認</th>
+        <th width="70">編集</th>
+        <th width="70">削除</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.title %></td>
+            <td><%= user.start_day %></td>
+            <td><%= user.finish_day %></td>
+            <td><%= user.all_day ? "●" : "x" %></td>
+            <td><%= user.updated_at.to_s(:datetime_jp)%></td>
+            <td>
+              <%= link_to"確認",user%>
+            </td>
+            <td>
+              <%= link_to"編集",[:edit,user]%>
+            </td>
+            <td>
+              <%= link_to"削除",user,method: :delete%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <%=link_to("users/new")do %>
+    <button class="btn-new">ユーザー新規登録</button>
+  <% end%>
+</body>
+
+<footer>
+  <div class="footer-container">
+    <h1>現在時刻：<span id="real-time"></span> </h1>
+    <h1>スケジュール数：<%= User.count%></h1>
+  </div>
+</footer>
+
+  <script type="text/javascript">
+function Time() {
+  const realTime = new Date();
+  const month= realTime.getMonth();
+  const day= realTime.getDate();
+  const hour = realTime.getHours();
+  const minutes  = realTime.getMinutes();
+  const text =month + "月" + day + "日" + hour + "時" + minutes + "分です";
+  document.getElementById("real-time").innerHTML = text;
+}
+setInterval('Time()',1000);
+  </script>
+
