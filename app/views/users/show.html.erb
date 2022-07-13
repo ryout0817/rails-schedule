@@ -1,0 +1,32 @@
+<h1>Ruby on Rails スケジュール管理アプリ</h1>
+<h2>スケジュール確認</h2>
+<table border="1">
+  <tr>
+    <th class="column">タイトル</th>
+    <td class="command"><%= @user.title%></td>
+  </tr>
+
+  <tr>
+    <th class="column">開始日</th>
+    <td class="command"><%= @user.start_day%></td>
+  </tr>
+
+  <tr>
+    <th class="column">投稿日時</th>
+    <td class="command"><%= @user.created_at.to_s(:datetime_jp)%></td>
+  </tr>
+
+  <tr>
+    <th class="column">終日</th>
+    <td class="command"><%= @user.all_day ? "◯" : "x"%></td>
+  </tr>
+
+  <tr>
+    <th class="column">スケジュールメモ</th>
+    <td class="command"><%= @user.introduction%></td>
+  </tr>
+</table>
+
+<p><%= link_to"ユーザー一覧に戻る",:users %></p>
+
+<%= render"shared/footer"%>
